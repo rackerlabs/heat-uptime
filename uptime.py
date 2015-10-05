@@ -34,7 +34,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='Get uptime metrics')
     parser.add_argument('-c', '--config', help='Path to config file',
-                        default='/etc/heat-uptime/uptime.cfg')
+                        default='etc/uptime.cfg')
     args = parser.parse_args()
     config_file = args.config
 
