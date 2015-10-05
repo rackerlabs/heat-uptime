@@ -5,6 +5,7 @@ import argparse
 import logging
 import os
 import requests
+import signal
 import sys
 import time
 
@@ -62,6 +63,7 @@ def main():
                           seconds=interval, name=region)
 
     scheduler.start()
+    signal.signal(signal.SIGTERM, sys.exit)
     while True:
         try:
             time.sleep(1)
