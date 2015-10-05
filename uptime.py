@@ -64,7 +64,7 @@ def main():
     scheduler.start()
     while True:
         try:
-            pass
+            time.sleep(1)
         except KeyboardInterrupt:
             scheduler.shutdown()
             sys.exit(0)
