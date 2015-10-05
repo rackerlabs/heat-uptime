@@ -1,0 +1,5 @@
+apscheduler
+python-heatclient
+python-keystoneclient
+requests
+statsd
