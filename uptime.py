@@ -26,7 +26,7 @@ def time_build_info(username, password, tenant, auth_url, heat_url, region):
     statsd = StatsClient()
 
     with statsd.timer('uptime.{}'.format(region)):
-        heat.build_info.build_info()
+        heat.stacks.list()
 
 
 def main():
