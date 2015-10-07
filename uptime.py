@@ -61,7 +61,7 @@ def main():
         region = section
 
         scheduler.add_job(time_build_info, 'interval', [username, password,
-                          tenant, auth_url, heat_url, region],
+                          tenant, auth_url, heat_url, region, statsd_server],
                           seconds=interval, name=region)
 
     scheduler.start()
