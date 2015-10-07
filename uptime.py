@@ -18,7 +18,7 @@ from statsd import StatsClient
 requests.packages.urllib3.disable_warnings()
 
 
-def time_build_info(username, password, tenant, auth_url, heat_url, region,
+def time_stack_list(username, password, tenant, auth_url, heat_url, region,
                     statsd_server):
     keystone = keystone_client(username=username, password=password,
                                tenant_name=tenant, auth_url=auth_url)
@@ -60,7 +60,7 @@ def main():
         heat_url = config.get(section, 'heat_url')
         region = section
 
-        scheduler.add_job(time_build_info, 'interval', [username, password,
+        scheduler.add_job(time_stack_list, 'interval', [username, password,
                           tenant, auth_url, heat_url, region, statsd_server],
                           seconds=interval, name=region)
 
