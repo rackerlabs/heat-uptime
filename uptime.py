@@ -18,12 +18,13 @@ from statsd import StatsClient
 requests.packages.urllib3.disable_warnings()
 
 
-def time_build_info(username, password, tenant, auth_url, heat_url, region):
+def time_build_info(username, password, tenant, auth_url, heat_url, region,
+                    statsd_server):
     keystone = keystone_client(username=username, password=password,
                                tenant_name=tenant, auth_url=auth_url)
     token = keystone.auth_token
     heat = heat_client('1', endpoint=heat_url, region_name=region, token=token)
-    statsd = StatsClient()
+    statsd = StatsClient(host=statsd_server)
 
     with statsd.timer('uptime.{}'.format(region)):
         list(heat.stacks.list())
@@ -50,6 +51,7 @@ def main():
 
     auth_url = config.get('DEFAULT', 'auth_url')
     interval = int(config.get('DEFAULT', 'interval'))
+    statsd_server = config.get('DEFAULT', 'statsd_server')
 
     for section in config.sections():
         username = config.get(section, 'username')
